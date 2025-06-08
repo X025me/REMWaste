@@ -33,27 +33,27 @@ const StepperNav = () => {
   }
 
   return (
-    <nav className="w-[100%] font-display max-w-7xl mx-auto">
-      <div className="flex flex-row justify-between items-center px-20 py-10">
+    <nav className="w-full font-display max-w-7xl mx-auto">
+      <div className="flex flex-row justify-between items-center px-4 md:px-8 lg:px-20 py-6 md:py-8 lg:py-10 overflow-x-auto">
         {steps.map((step, index) => (
           <React.Fragment key={step.name}>
             {index > 0 && (
               <div
-                className={`flex-1 h-0.5 mx-2 ${
+                className={`hidden md:block flex-1 h-0.5 mx-2 ${
                   index <= currentStep ? 'bg-[blue]' : 'bg-gray-600'
                 }`}
               />
             )}
             <Link
               to={step.path}
-              className='flex flex-row items-center group'
+              className='flex flex-shrink-0 flex-row items-center group min-w-fit'
             >
-              <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
+              <div className={`flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full ${
                 index <= currentStep ? 'bg-blue-600' : 'bg-gray-700'
               } transition-colors duration-200`}>
                 {step.icon(index <= currentStep)}
               </div>
-              <span className={`text-md ml-2 font-medium whitespace-nowrap transition-colors duration-200 ${
+              <span className={`hidden md:inline text-sm md:text-md ml-2 font-medium whitespace-nowrap transition-colors duration-200 ${
                 index <= currentStep ? 'text-white' : 'text-gray-400'
               } group-hover:text-white`}>
                 {step.name}

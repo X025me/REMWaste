@@ -69,7 +69,7 @@ const StepTwo = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-36">
           {wasteTypes.map((type) => (
             <label
               key={type.id}
