@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updatePostcode, setCurrentStep } from '../store/features/formSlice';
+import { setPostcode, setCurrentStep } from '../store/features/formSlice';
 
 const StepOne = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const StepOne = () => {
             <input
               type="text"
               value={postcode}
-              onChange={(e) => dispatch(updatePostcode(e.target.value.toUpperCase()))}
+              onChange={(e) => dispatch(setPostcode(e.target.value.toUpperCase()))}
               className="w-full px-4 py-2 bg-gray-800/50 border-2 border-gray-700 rounded-xl text-white text-lg uppercase placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors font-medium tracking-wide"
               placeholder="Enter your postcode"
               required

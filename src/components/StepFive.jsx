@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateDeliveryDate, setCurrentStep } from '../store/features/formSlice';
+import { setDeliveryDate, setCurrentStep } from '../store/features/formSlice';
 
 const StepFive = () => {
   const dispatch = useDispatch();
@@ -25,9 +25,9 @@ const StepFive = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-white mb-4">Choose Delivery Date</h2>
-      <div className="bg-white/10 p-6 rounded-lg">
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-2xl font-bold text-white mb-4 text-center">Choose Delivery Date</h2>
+      <div className=" p-6 rounded-lg flex flex-col gap-4 justify-center items-center">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <p className="text-white/90">
@@ -36,7 +36,7 @@ const StepFive = () => {
             <input
               type="date"
               value={deliveryDate}
-              onChange={(e) => dispatch(updateDeliveryDate(e.target.value))}
+              onChange={(e) => dispatch(setDeliveryDate(e.target.value))}
               min={minDate}
               max={maxDateStr}
               className="w-full p-3 rounded bg-white/5 border border-white/20 text-white"
