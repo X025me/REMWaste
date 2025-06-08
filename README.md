@@ -247,12 +247,4 @@ The application follows these key design principles:
    - Screen reader friendly
    - Color contrast compliance
 
-## Future Enhancements
 
-- Integration with payment gateway
-- Email notifications
-- Admin dashboard
-- Order tracking
-- Customer account area
-- Saved addresses
-- Repeat booking functionality
