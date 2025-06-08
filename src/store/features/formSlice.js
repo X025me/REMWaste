@@ -1,48 +1,80 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  currentStep: 1,
   postcode: '',
-  wasteTypes: [],
-  skipSize: '',
-  permitRequired: false,
-  deliveryDate: '',
-  paymentDetails: {
-    total: 0,
-    method: ''
+  selectedWasteTypes: [],
+  selectedSkipId: null,
+  hasHeavyWaste: false,
+  heavyWasteTypes: [],
+  skipFilters: {
+    needsRoadPlacement: false,
+    needsHeavyWaste: false,
+    minSize: null,
+    maxSize: null,
+    minPrice: null,
+    maxPrice: null,
+    postcode: ''
   },
-  currentStep: 0
+  deliveryDate: null,
+  permitRequired: false,
+  paymentDetails: null
 };
 
 export const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    updatePostcode: (state, action) => {
+    setCurrentStep: (state, action) => {
+      state.currentStep = action.payload;
+    },
+    setPostcode: (state, action) => {
       state.postcode = action.payload;
+      state.skipFilters.postcode = action.payload;
     },
     toggleWasteType: (state, action) => {
       const wasteType = action.payload;
-      const index = state.wasteTypes.indexOf(wasteType);
+      const index = state.selectedWasteTypes.indexOf(wasteType);
       if (index === -1) {
-        state.wasteTypes.push(wasteType);
+        state.selectedWasteTypes.push(wasteType);
       } else {
-        state.wasteTypes.splice(index, 1);
+        state.selectedWasteTypes.splice(index, 1);
       }
     },
-    updateSkipSize: (state, action) => {
-      state.skipSize = action.payload;
+    setHasHeavyWaste: (state, action) => {
+      state.hasHeavyWaste = action.payload;
+      state.skipFilters.needsHeavyWaste = action.payload;
+      if (!action.payload) {
+        state.heavyWasteTypes = [];
+      }
     },
-    updatePermit: (state, action) => {
-      state.permitRequired = action.payload;
+    addHeavyWasteType: (state, action) => {
+      if (!state.heavyWasteTypes.includes(action.payload)) {
+        state.heavyWasteTypes.push(action.payload);
+      }
     },
-    updateDeliveryDate: (state, action) => {
+    removeHeavyWasteType: (state, action) => {
+      state.heavyWasteTypes = state.heavyWasteTypes.filter(
+        type => type !== action.payload
+      );
+    },
+    setSelectedSkip: (state, action) => {
+      state.selectedSkipId = action.payload;
+    },
+    updateSkipFilters: (state, action) => {
+      state.skipFilters = {
+        ...state.skipFilters,
+        ...action.payload
+      };
+    },
+    setDeliveryDate: (state, action) => {
       state.deliveryDate = action.payload;
     },
-    updatePaymentDetails: (state, action) => {
-      state.paymentDetails = { ...state.paymentDetails, ...action.payload };
+    setPermitRequired: (state, action) => {
+      state.permitRequired = action.payload;
     },
-    setCurrentStep: (state, action) => {
-      state.currentStep = action.payload;
+    setPaymentDetails: (state, action) => {
+      state.paymentDetails = action.payload;
     },
     resetForm: (state) => {
       return initialState;
@@ -51,13 +83,17 @@ export const formSlice = createSlice({
 });
 
 export const {
-  updatePostcode,
-  toggleWasteType,
-  updateSkipSize,
-  updatePermit,
-  updateDeliveryDate,
-  updatePaymentDetails,
   setCurrentStep,
+  setPostcode,
+  toggleWasteType,
+  setHasHeavyWaste,
+  addHeavyWasteType,
+  removeHeavyWasteType,
+  setSelectedSkip,
+  updateSkipFilters,
+  setDeliveryDate,
+  setPermitRequired,
+  setPaymentDetails,
   resetForm
 } = formSlice.actions;
 
