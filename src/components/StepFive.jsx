@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateDeliveryDate, setCurrentStep } from '../store/features/formSlice';
+import { setDeliveryDate, setCurrentStep } from '../store/features/formSlice';
 
 const StepFive = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const StepFive = () => {
             <input
               type="date"
               value={deliveryDate}
-              onChange={(e) => dispatch(updateDeliveryDate(e.target.value))}
+              onChange={(e) => dispatch(setDeliveryDate(e.target.value))}
               min={minDate}
               max={maxDateStr}
               className="w-full p-3 rounded bg-white/5 border border-white/20 text-white"

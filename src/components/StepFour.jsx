@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updatePermit, setCurrentStep } from '../store/features/formSlice';
+import { setPermitRequired, setCurrentStep } from '../store/features/formSlice';
 
 const StepFour = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const StepFour = () => {
                   type="radio"
                   name="permit"
                   checked={permitRequired === true}
-                  onChange={() => dispatch(updatePermit(true))}
+                  onChange={() => dispatch(setPermitRequired(true))}
                   className="hidden"
                   required
                 />
@@ -44,7 +44,7 @@ const StepFour = () => {
                   type="radio"
                   name="permit"
                   checked={permitRequired === false}
-                  onChange={() => dispatch(updatePermit(false))}
+                  onChange={() => dispatch(setPermitRequired(false))}
                   className="hidden"
                   required
                 />

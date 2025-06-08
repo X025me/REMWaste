@@ -70,6 +70,98 @@ A modern, user-friendly skip hire booking application built with React, Redux To
 - Redux Toolkit for global state
 - Form data persistence
 - Step navigation tracking
+- Waste type and heavy waste selection management
+- Skip filtering and availability checks
+
+#### Waste Type Selection System
+1. **General Waste Selection**
+   - Multiple waste type selection
+   - Categories include:
+     - Household Waste
+     - Garden Waste
+     - Construction
+     - Soil & Rubble
+     - Commercial
+     - Metal & Appliances
+
+2. **Heavy Waste Handling**
+   - Two-step verification process:
+     1. Initial heavy waste check
+     2. Specific heavy waste type selection
+   - Heavy waste categories:
+     - Soil
+     - Rubble
+     - Concrete
+     - Bricks
+   - Automatic skip filtering based on heavy waste requirements
+
+#### Skip Filtering System
+1. **Dynamic Filtering**
+   - Filters based on:
+     - Postcode availability
+     - Heavy waste compatibility
+     - Road placement requirements
+   - Real-time skip availability updates
+
+2. **Skip Display Features**
+   - Visual representation with skip images
+   - Price calculation with VAT
+   - Hire period information
+   - Road placement availability indicators
+   - Heavy waste compatibility badges
+   - Dynamic pricing updates
+
+3. **Availability Handling**
+   - No results handling with specific messages
+   - Different messages for:
+     - Heavy waste incompatibility
+     - General availability issues
+   - User guidance for alternative options
+
+#### Data Structure
+```javascript
+// Skip Data Structure
+{
+  id: number,
+  size: number,
+  hire_period_days: number,
+  price_before_vat: number,
+  vat: number,
+  postcode: string,
+  allowed_on_road: boolean,
+  allows_heavy_waste: boolean
+}
+
+// Form State Structure
+{
+  selectedWasteTypes: string[],
+  hasHeavyWaste: boolean,
+  heavyWasteTypes: string[],
+  skipFilters: {
+    needsRoadPlacement: boolean,
+    needsHeavyWaste: boolean,
+    postcode: string
+  }
+}
+```
+
+#### User Flow
+1. **Waste Type Selection**
+   - Select multiple waste types
+   - Confirm heavy waste requirements
+   - Choose specific heavy waste types if applicable
+
+2. **Skip Selection**
+   - View filtered available skips
+   - See waste requirements summary
+   - Select appropriate skip size
+   - View compatibility information
+
+3. **Validation & Navigation**
+   - Waste type validation
+   - Heavy waste confirmation
+   - Skip availability checks
+   - Navigation controls
 
 #### Styling
 - Tailwind CSS for styling

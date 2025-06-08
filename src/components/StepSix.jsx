@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updatePaymentDetails, resetForm } from '../store/features/formSlice';
+import { setPaymentDetails, resetForm } from '../store/features/formSlice';
 
 const StepSix = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const StepSix = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updatePaymentDetails({ total, method: 'card' }));
+    dispatch(setPaymentDetails({ total, method: 'card' }));
     // Here you would typically integrate with a payment provider
     alert('Order placed successfully!');
     dispatch(resetForm());

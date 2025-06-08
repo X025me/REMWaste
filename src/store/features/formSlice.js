@@ -5,6 +5,8 @@ const initialState = {
   postcode: '',
   selectedWasteTypes: [],
   selectedSkipId: null,
+  hasHeavyWaste: false,
+  heavyWasteTypes: [],
   skipFilters: {
     needsRoadPlacement: false,
     needsHeavyWaste: false,
@@ -38,10 +40,22 @@ export const formSlice = createSlice({
       } else {
         state.selectedWasteTypes.splice(index, 1);
       }
-      
-      // Update skip filters based on waste types
-      state.skipFilters.needsHeavyWaste = state.selectedWasteTypes.some(type => 
-        ['SOIL', 'RUBBLE', 'CONCRETE', 'BRICKS'].includes(type)
+    },
+    setHasHeavyWaste: (state, action) => {
+      state.hasHeavyWaste = action.payload;
+      state.skipFilters.needsHeavyWaste = action.payload;
+      if (!action.payload) {
+        state.heavyWasteTypes = [];
+      }
+    },
+    addHeavyWasteType: (state, action) => {
+      if (!state.heavyWasteTypes.includes(action.payload)) {
+        state.heavyWasteTypes.push(action.payload);
+      }
+    },
+    removeHeavyWasteType: (state, action) => {
+      state.heavyWasteTypes = state.heavyWasteTypes.filter(
+        type => type !== action.payload
       );
     },
     setSelectedSkip: (state, action) => {
@@ -72,6 +86,9 @@ export const {
   setCurrentStep,
   setPostcode,
   toggleWasteType,
+  setHasHeavyWaste,
+  addHeavyWasteType,
+  removeHeavyWasteType,
   setSelectedSkip,
   updateSkipFilters,
   setDeliveryDate,
