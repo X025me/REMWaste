@@ -25,9 +25,9 @@ const StepFive = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-white mb-4">Choose Delivery Date</h2>
-      <div className="bg-white/10 p-6 rounded-lg">
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-2xl font-bold text-white mb-4 text-center">Choose Delivery Date</h2>
+      <div className=" p-6 rounded-lg flex flex-col gap-4 justify-center items-center">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <p className="text-white/90">
